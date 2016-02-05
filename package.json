@@ -1,0 +1,28 @@
+{
+  "name": "cornerstone",
+  "version": "1.0.0",
+  "description": "lightweight and extensible cms/cmf for node.js",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Michael Rawlings",
+    "email": "mlrawlings@gmail.com",
+    "url": "https://github.com/mlrawlings"
+  },
+  "dependencies": {
+    "marko": "git://github.com/marko-js/marko#htmljs-parser"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mlrawlings/cornerstone.git"
+  },
+  "homepage": "https://github.com/mlrawlings/cornerstone",
+  "bugs": {
+    "url": "https://github.com/mlrawlings/cornerstone/issues"
+  }
+}
