@@ -5,6 +5,7 @@ const PROPERTY = 'Property'
 module.exports = function transform(el, context) {
 	if(el.tagName === 'cms') return;
 	
+	var builder = context.builder
 	var editable = el.getAttributeValue('editable')
 	var _id = el.getAttributeValue('_id')
 	var id = el.getAttributeValue('id')
@@ -18,16 +19,13 @@ module.exports = function transform(el, context) {
 
 		var cmsNode = context.createNodeForEl('cms', el.getAttributes())
 		cmsNode.setAttributeValue('tag', '"'+tag+'"')
-		/*cmsNode.getAttributeValue('editable').properties.forEach(property => {
+		cmsNode.getAttributeValue('editable').properties.forEach(property => {
 			if(property.type !== PROPERTY) return
 			if(property.value.type !== IDENTIFIER) return
 			if(property.value.name !== property.key.name) return
 			
-			property.value = {
-				type:LITERAL,
-				value:true
-			}
-		})*/
+			property.value = builder.literalTrue()
+		})
 		el.replaceWith(cmsNode)
 	}
 }

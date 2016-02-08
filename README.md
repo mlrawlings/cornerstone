@@ -58,32 +58,38 @@ Have an `<h2>` that needs to be editable? Simply specify that `text` is editable
 <h2 class="sub-heading">This is my default heading</h2>
 
 <!--editable-->
-<h2 id="heading-1" editable={ text:true } class="sub-heading">This is my default heading</h2>
+<h2 id="heading-1" editable={ text } class="sub-heading">This is my default heading</h2>
 ```
 
 Need to edit more than one property?
 ```html
-<a id="some-link" editable={ text:true, href:true }></a>
+<a id="some-link" editable={ text, href }></a>
 ```
 
 Want to nest editable content?
 ```html
-<a id="feature-link" editable={ href:true }>
-    <h3 id="feature-header" editable={ text:true } />
-    <img id="feature-img" editable={ src:true } />
-    <p id="feature-description" editable={ text:true } />
+<a id="feature-link" editable={ href }>
+    <h3 id="feature-header" editable={ text } />
+    <img id="feature-img" editable={ src } />
+    <p id="feature-description" editable={ text } />
 </a>
 ```
 
 Don't want the `id` attribute in the actual output? Use `_id`!
 ```html
-<a _id="some-link" editable={ text:true, href:true }></a>
+<a _id="some-link" editable={ text, href }></a>
 ```
 
 ##### Scope
 By default, editable tags are scoped to the current page which means editing the tag on one page will not change the value of the tag on another page.  By adding `scope="site"` to an editable tag, the tag will now be scoped to the site.  This means whenever the tag's value is changed, it will be changed on every page in the site.
 ```html
-<img id="site-logo" editable={ img:true } scope="site" />
+<img id="site-logo" editable={ img } scope="site" />
+```
+
+##### Options
+To pass additional options to an editable type, set an options object on the property:
+```html
+<img id="feature-image" editable={ img:{ ratio:16/9, maxwidth:1920 } } />
 ```
 
 ##### Editable Tag Types
