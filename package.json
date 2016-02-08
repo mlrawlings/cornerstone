@@ -10,7 +10,8 @@
     "url": "https://github.com/mlrawlings"
   },
   "dependencies": {
-    "marko": "git://github.com/marko-js/marko#htmljs-parser"
+    "marko": "git://github.com/marko-js/marko#htmljs-parser",
+    "require-all": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {

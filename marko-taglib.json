@@ -1,8 +1,11 @@
 {
 	"<cms>": {
-		"renderer":"./cms-renderer"
+		"renderer":"./tags/cms.renderer"
+	},
+	"<export>": {
+		"code-generator":"./tags/export.generator"
 	},
 	"<*>": {
-		"transformer":"./editable-attr-transformer"
+		"transformer":"./tags/editable.transformer"
 	}
 }
