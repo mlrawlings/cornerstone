@@ -70,7 +70,7 @@ function applyEditables(attributes, editable, scopeName, out) {
 
 	Object.keys(editable).forEach(type => {
 		if(!editableTypes[type]) {
-			throw new Error(type + ' is not registered as an editable type.')
+			return out.error(type + ' is not registered as an editable type.')
 		}
 
 		var value = tagData && tagData[type]
