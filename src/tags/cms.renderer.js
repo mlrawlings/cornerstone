@@ -2,7 +2,7 @@ var editableTypes = require('../..')._editableTypes
 var isOpenTagOnly = require('marko/node_modules/htmljs-parser/html-tags').isOpenTagOnly
 
 module.exports = function(attributes, out) {
-	var editing = out.global.editing || true
+	var editing = out.global.qs.editing
 	var editable = pluck(attributes, 'editable')
 	var scope = pluck(attributes, 'scope') || 'page'
 
