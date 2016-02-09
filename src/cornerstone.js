@@ -4,12 +4,15 @@ var path = require('path')
 var all = require('require-all')
 var mongoose = require('mongoose')
 
+var Pages = require('./collections/pages')
+
 class Cornerstone {
 	constructor() {
 		this._templates = {}
 		this._collections = {}
 		this._editableTypes = {}
 
+		this.registerCollection(Pages)
 		this.loadEditableTypes(path.join(__dirname, './editable'))
 	}
 	registerTemplate(template) {
