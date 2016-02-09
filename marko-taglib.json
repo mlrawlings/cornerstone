@@ -5,9 +5,9 @@
 	"<export>": {
 		"code-generator":"./src/tags/export.generator"
 	},
-	"<collection>":{
-		"renderer":"./src/tags/collection.renderer",
-		"transformer":"./src/tags/collection.transformer"
+	"<find>":{
+		"renderer":"./src/tags/find.renderer",
+		"transformer":"./src/tags/find.transformer"
 	},
 	"<*>": {
 		"transformer":"./src/tags/editable.transformer"

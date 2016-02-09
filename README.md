@@ -109,16 +109,16 @@ These types can be added to (or replaced) either by creating your own types or i
 #### Menu
 
 
-#### Collection Queries
-The `<collection>` tag provides a way to get data out of [collections](#collections) and onto the page.  Specify the collection name and a query will be made with the passed options, the contents of the tag will be looped over in a `forEach` fashion for every result of the query:
+#### Find in Collection
+The `<find>` tag provides a way to get data out of [collections](#collections) and onto the page.  Specify the collection name and a query will be made with the passed options, the contents of the tag will be looped over in a `forEach` fashion for every result of the query:
 ```html
 <ul class="post-list">
-    <collection(post in "Posts") filter={ isPublished:true } limit=4>
+    <find(post in "Posts") filter={ isPublished:true } limit=4>
     	<li>${post.title}</li>
-    </collection>
+    </find>
 </ul>
 ```
-##### Query Options
+##### Find Options
 - `filter`: a [mongodb query object](https://docs.mongodb.org/manual/tutorial/query-documents/) (e.g. `{ isPublished:true }`) or a [named filter](#named-filters) (e.g. `"Published"`).
 - `sort`: a [string or object](http://mongoosejs.com/docs/api.html#query_Query-sort) indicating sort order (e.g `{ date:-1 }`)
 - `skip`: a number indicating how many records to skip before returning results
@@ -139,7 +139,7 @@ To register a template and make it available for creating pages within the cms a
 Then, call `cornerstone.registerTemplate(require([path to template]))` or register all `.marko` files in a directory (that export a `name` and `id`) using `cornerstone.loadTemplates([path to templates directory])`.
 
 ### Collections
-Collections in CornerstoneCMS are built upon [Mongoose](http://mongoosejs.com/).  Collections provide a way to manage and view custom, structured data for a site.  Some common uses for collections would include users, blog posts, and contact form submissions.  Collection data is available to view and manage from within the cms admin, and it is also available to display from templates using the [`<collection>` tag](#collection-queries).
+Collections in CornerstoneCMS are built upon [Mongoose](http://mongoosejs.com/).  Collections provide a way to manage and view custom, structured data for a site.  Some common uses for collections would include users, blog posts, and contact form submissions.  Collection data is available to view and manage from within the cms admin, and it is also available to display from templates using the [`<find>` tag](#find-in-collection).
 
 #### Defining a Collection
 
@@ -186,7 +186,7 @@ The schema defines the collection's fields, their types, defaults, constraints, 
     - `Any` - allows any data in any format. displayed as a JSON textarea.
 
 ##### Named Filters
-Named filters provide a tabbed interface within the cms admin to view filtered lists.  To define a named query add the name as a key in the `filters` object on the collection definition, and a [mongodb query object](https://docs.mongodb.org/manual/tutorial/query-documents/) as the value:
+Named filters provide a tabbed interface within the cms admin to view filtered lists.  To define a named filter add the name as a key in the `filters` object on the collection definition, and a [mongodb query object](https://docs.mongodb.org/manual/tutorial/query-documents/) as the value:
 ```javascript
 var Posts = new Collection('Posts', {
     schema: { /*...*/ },
@@ -196,7 +196,7 @@ var Posts = new Collection('Posts', {
     }
 })
 ```
-Named filters may also be used from a [`<collection>` tag](#collection-queries) instead of specifying the equivalent mongodb query. 
+Named filters may also be used from a [`<find>` tag](#find-in-collection) instead of specifying the equivalent mongodb query. 
 
 #### Registering a Collection
 To register a collection and make it available within the cms admin and templates, call `cornerstone.registerCollection([collection definition])` or register all `.js` files in a directory using `cornerstone.loadCollections([path to collections directory])`

@@ -15,7 +15,7 @@ module.exports = function(el, context) {
 		child.setAttributeValue('data-cms-collection-id', 'editing && '+varName+'._id')
 	})
 
-	el.setAttributeValue('name', collectionName)
+	el.setAttributeValue('collection', collectionName)
 	el.setAttributeValue('renderDocument', renderDocument)
 	
 	delete el.body

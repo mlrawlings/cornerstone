@@ -1,7 +1,7 @@
 var cornerstone = require('../..')
 
 module.exports = function(input, out) {
-	var Collection = cornerstone.getCollection(input.name)
+	var Collection = cornerstone.getCollection(input.collection)
 	var editing = out.global.qs.editing
 
 	if(!Collection) {
