@@ -15,6 +15,9 @@ class Cornerstone {
 		this.registerCollection(Pages)
 		this.loadEditableTypes(path.join(__dirname, './editable'))
 	}
+	getTemplate(id) {
+		return this._templates[id]
+	}
 	registerTemplate(template) {
 		if(!template.id) return
 		this._templates[template.id] = template
@@ -36,6 +39,20 @@ class Cornerstone {
 	}
 	connect() {
 		mongoose.connect.apply(mongoose, arguments)
+	}
+	express() {
+		var site
+		return (req, res, next) => {
+			Pages.model.findOne({ path:req.path }, (err, page) => {
+				if(err) return next(err)
+				if(!page) return next()
+				
+				var template = this.getTemplate(page.template)
+				var $global = { site, page, qs:req.query }
+				
+				template.stream({ $global }).pipe(res)
+			})
+		}
 	}
 	_load(dirname, fn) {
 		all({

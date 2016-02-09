@@ -14,7 +14,9 @@
     "mongoose": "^4.4.2",
     "require-all": "^2.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "express": "^4.13.4"
+  },
   "scripts": {
     "test": "node test.js"
   },
