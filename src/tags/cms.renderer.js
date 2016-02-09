@@ -17,7 +17,7 @@ module.exports = function(attributes, out) {
 
 	attributes.class = classArrayToString(attributes.class)
 	attributes.style = styleObjectToString(attributes.style)
-	attributes['data-editable'] = editing && JSON.stringify(editable)
+	attributes['data-cms-editable'] = editing && JSON.stringify(editable)
 	
 	out.write(`<${tag}`)
 	writeAttributes(attributes, out)

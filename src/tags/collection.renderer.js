@@ -2,6 +2,7 @@ var cornerstone = require('../..')
 
 module.exports = function(input, out) {
 	var Collection = cornerstone.getCollection(input.name)
+	var editing = out.global.qs.editing
 
 	if(!Collection) {
 		return out.error('No collection found with name "'+input.name+'".')
@@ -49,7 +50,7 @@ module.exports = function(input, out) {
 
 	query.exec((err, results) => {
 		results.forEach(result => {
-			input.renderDocument(asyncOut, result)
+			input.renderDocument(asyncOut, result, editing)
 		})
 		asyncOut.end()
 	})
