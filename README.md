@@ -145,9 +145,9 @@ Collections in CornerstoneCMS are built upon [Mongoose](http://mongoosejs.com/).
 
 
 ```javascript
-// basic collection definition
-var Posts = {
-    name:'Posts',
+var Collection = require('cornerstone-cms').Collection
+
+var Posts = new Collection('Posts', {
     schema: {
         title:'Text',
         date:{ type:'Date', default:() => new Date() },
@@ -155,7 +155,7 @@ var Posts = {
         author:{ type:'Reference', ref:'Authors' }, 
         published:'Boolean',
     }
-});
+})
 ```
 
 ##### Schema Definition
@@ -188,14 +188,13 @@ The schema defines the collection's fields, their types, defaults, constraints, 
 ##### Named Filters
 Named filters provide a tabbed interface within the cms admin to view filtered lists.  To define a named query add the name as a key in the `filters` object on the collection definition, and a [mongodb query object](https://docs.mongodb.org/manual/tutorial/query-documents/) as the value:
 ```javascript
-var Posts = {
-    name:'Posts',
+var Posts = new Collection('Posts', {
     schema: { /*...*/ },
     filters: {
         'Published':{ published:true },
         'Drafts':{ published:false }
     }
-});
+})
 ```
 Named filters may also be used from a [`<collection>` tag](#collection-queries) instead of specifying the equivalent mongodb query. 
 
@@ -218,15 +217,14 @@ var Post = mongoose.model('Posts');
 When a collection is created, an api endpoint is also created at `/api/${collection_name}`, however this can be configured to another path.  By default, a collection endpoint is unavailable when logged out, and full access when logged in.  This can be configured with an access function on the collection which will be passed the current user object.  The example below would make a collection read-only when logged out, full access when logged in.
 
 ```javascript
-var Posts = {
-    name:'Posts',
+var Posts = new Collection('Posts', {
     schema: { /*...*/ },
     access: (user) => {
         if(!user) return { read:true }
         
         return { create:true, read:true, update:true, delete:true }
     }
-});
+})
 ```
 
 
