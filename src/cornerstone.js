@@ -25,6 +25,9 @@ class Cornerstone {
 	loadTemplates(dirname) {
 		this._load(dirname, this.registerTemplate)
 	}
+	getCollection(name) {
+		return this._collections[name]
+	}
 	registerCollection(collection) {
 		this._collections[collection.name] = collection
 	}

@@ -5,6 +5,10 @@
 	"<export>": {
 		"code-generator":"./src/tags/export.generator"
 	},
+	"<collection>":{
+		"renderer":"./src/tags/collection.renderer",
+		"transformer":"./src/tags/collection.transformer"
+	},
 	"<*>": {
 		"transformer":"./src/tags/editable.transformer"
 	}

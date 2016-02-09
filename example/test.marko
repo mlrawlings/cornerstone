@@ -1,2 +1,5 @@
 <export id="test-1" name="Test Template 1" />
 <a id="feature-link" editable={ text, href } style="color:#f00;" />
+<collection(page in "Pages")>
+	<a href=page.path>${page.name}</a>
+</collection>

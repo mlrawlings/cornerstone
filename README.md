@@ -109,21 +109,21 @@ These types can be added to (or replaced) either by creating your own types or i
 #### Menu
 
 
-#### Queries
-The `{% query %}` tag provides a way to get data out of [collections](#collections) and onto the page.  Specify the collection name and a query will be made with the passed options, the contents of the tag will be looped over in a `forEach` fashion for every result of the query:
+#### Collection Queries
+The `<collection>` tag provides a way to get data out of [collections](#collections) and onto the page.  Specify the collection name and a query will be made with the passed options, the contents of the tag will be looped over in a `forEach` fashion for every result of the query:
 ```html
 <ul class="post-list">
-    {% query "Posts", name="post", filter={ isPublished:true }, limit=4 %}
-    	<li>{{ post.title }}</li>
-    {% endquery %}
+    <collection(post in "Posts") filter={ isPublished:true } limit=4>
+    	<li>${post.title}</li>
+    </collection>
 </ul>
 ```
 ##### Query Options
-- `name`: the variable name to be used inside the loop, if not specified, it defaults to `result`.
 - `filter`: a [mongodb query object](https://docs.mongodb.org/manual/tutorial/query-documents/) (e.g. `{ isPublished:true }`) or a [named filter](#named-filters) (e.g. `"Published"`).
-- `sort`: a [mongodb sort object](https://docs.mongodb.org/manual/reference/method/cursor.sort/) (e.g `{ date:-1 }`)
+- `sort`: a [string or object](http://mongoosejs.com/docs/api.html#query_Query-sort) indicating sort order (e.g `{ date:-1 }`)
 - `skip`: a number indicating how many records to skip before returning results
 - `limit`: a number indicating the maximum records to return
+- `select`: an [string or object](http://mongoosejs.com/docs/api.html#query_Query-select) indicating which fields to return (e.g. `{ title:1 }`)
 
 #### Globals
 There are certain "global" variables that all templates have access to:
@@ -139,7 +139,7 @@ To register a template and make it available for creating pages within the cms a
 Then, call `cornerstone.registerTemplate(require([path to template]))` or register all `.marko` files in a directory (that export a `name` and `id`) using `cornerstone.loadTemplates([path to templates directory])`.
 
 ### Collections
-Collections in CornerstoneCMS are built upon [Mongoose](http://mongoosejs.com/).  Collections provide a way to manage and view custom, structured data for a site.  Some common uses for collections would include users, blog posts, and contact form submissions.  Collection data is available to view and manage from within the cms admin, and it is also available to display from templates using the [`{% query %}` tag](#queries).
+Collections in CornerstoneCMS are built upon [Mongoose](http://mongoosejs.com/).  Collections provide a way to manage and view custom, structured data for a site.  Some common uses for collections would include users, blog posts, and contact form submissions.  Collection data is available to view and manage from within the cms admin, and it is also available to display from templates using the [`<collection>` tag](#collection-queries).
 
 #### Defining a Collection
 
@@ -197,7 +197,7 @@ var Posts = {
     }
 });
 ```
-Named filters may also be used from a [`{% query %}` tag](#queries) instead of specifying the equivalent mongodb query. 
+Named filters may also be used from a [`<collection>` tag](#collection-queries) instead of specifying the equivalent mongodb query. 
 
 #### Registering a Collection
 To register a collection and make it available within the cms admin and templates, call `cornerstone.registerCollection([collection definition])` or register all `.js` files in a directory using `cornerstone.loadCollections([path to collections directory])`
