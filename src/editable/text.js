@@ -1,5 +1,6 @@
-module.exports = {
-	name:'text',
+var EditableType = require('../editable-type')
+
+module.exports = new EditableType('text', {
 	actions: [{
 		label:'Edit text',
 		icon:'edit',
@@ -11,4 +12,4 @@ module.exports = {
 		node.innerHTML = value
 		return node
 	}
-}
+})

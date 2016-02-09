@@ -1,6 +1,5 @@
-const LITERAL = 'Literal'
-const IDENTIFIER = 'Identifier'
 const PROPERTY = 'Property'
+const IDENTIFIER = 'Identifier'
 
 module.exports = function transform(el, context) {
 	if(el.tagName === 'cms') return;

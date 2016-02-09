@@ -1,5 +1,6 @@
-module.exports = {
-	name:'href',
+var EditableType = require('../editable-type')
+
+module.exports = new EditableType('href', {
 	actions: [{
 		label:'Edit link destination',
 		icon:'link',
@@ -16,4 +17,4 @@ module.exports = {
 	render: (node, value, options) => {
 		return node
 	}
-}
+})
