@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "marko": "git://github.com/marko-js/marko#htmljs-parser",
+    "mongoose": "^4.4.2",
     "require-all": "^2.0.0"
   },
   "devDependencies": {},
