@@ -132,11 +132,11 @@ There are certain "global" variables that all templates have access to:
 - `qs`: the parsed querystring from the url
 
 #### Registering a Template
-To register a template and make it available for creating pages within the cms admin, it must use the `<export>` tag to export a unique `id` and a `name` to display within the cms admin:
+To register a template and make it available for creating pages within the cms admin, it must use the `<register>` tag to register the template with a unique (and unchanging) `id` and a `name` to display within the cms admin:
 ```html
-<export id="test-1" name="Test Template 1" />
+<register("test-1" as "Test Template 1") />
 ```
-Then, call `cornerstone.registerTemplate(require([path to template]))` or register all `.marko` files in a directory (that export a `name` and `id`) using `cornerstone.loadTemplates([path to templates directory])`.
+Then, call `cornerstone.registerTemplate(require([path to template]))` or register all `.marko` files in a directory (that register a `name` and `id`) using `cornerstone.loadTemplates([path to templates directory])`.
 
 ### Collections
 Collections in CornerstoneCMS are built upon [Mongoose](http://mongoosejs.com/).  Collections provide a way to manage and view custom, structured data for a site.  Some common uses for collections would include users, blog posts, and contact form submissions.  Collection data is available to view and manage from within the cms admin, and it is also available to display from templates using the [`<find>` tag](#find-in-collection).

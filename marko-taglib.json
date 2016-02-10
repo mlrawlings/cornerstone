@@ -2,8 +2,8 @@
 	"<cms>": {
 		"renderer":"./src/tags/cms.renderer"
 	},
-	"<export>": {
-		"code-generator":"./src/tags/export.generator"
+	"<register>": {
+		"code-generator":"./src/tags/register.generator"
 	},
 	"<find>":{
 		"renderer":"./src/tags/find.renderer",
