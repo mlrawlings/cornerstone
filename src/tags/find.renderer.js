@@ -5,7 +5,7 @@ module.exports = function(input, out) {
 	var editing = out.global.qs.editing
 
 	if(!Collection) {
-		return out.error('No collection found with name "'+input.name+'".')
+		return out.error('No collection found with name "'+input.collection+'".')
 	}
 	
 	out.flush()
@@ -19,7 +19,7 @@ module.exports = function(input, out) {
 			if(filter = Collection.filters[input.filter]) {
 				query = Collection.model.find(filter)
 			} else {
-				return out.error(input.name+' collection does not have a filter named '+input.filter)
+				return out.error(input.collection+' collection does not have a filter named '+input.filter)
 			}
 		} else {
 			query = Collection.model.find(input.filter)
@@ -48,10 +48,16 @@ module.exports = function(input, out) {
 		query = query.populate(input.populate)
 	}
 
-	query.exec((err, results) => {
-		results.forEach(result => {
-			input.renderDocument(asyncOut, result, editing)
-		})
+	var stream = query.stream()
+
+	stream.on('data', result => {
+		input.renderDocument(asyncOut, result, editing)
+		asyncOut.flush()
+	})
+	stream.on('error', error => {
+		asyncOut.error('An error occurred while retrieving data from the '+input.collection+' collection. '+error.toString())
+	})
+	stream.on('end', () => {
 		asyncOut.end()
 	})
 }
