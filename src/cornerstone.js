@@ -3,6 +3,7 @@
 var path = require('path')
 var all = require('require-all')
 var mongoose = require('mongoose')
+var admin = require('./admin')
 
 var Pages = require('./collections/pages')
 
@@ -11,6 +12,8 @@ class Cornerstone {
 		this._templates = {}
 		this._collections = {}
 		this._editableTypes = {}
+
+		this.adminPath = 'admin'
 
 		this.registerCollection(Pages)
 		this.loadEditableTypes(path.join(__dirname, './editable'))
@@ -45,7 +48,13 @@ class Cornerstone {
 	}
 	express() {
 		var site
+		var adminRegex = new RegExp('^\\/'+this.adminPath+'(\/|$)')
 		return (req, res, next) => {
+			if(adminRegex.test(req.path)) {
+				req.url = req.url.replace(adminRegex, '/')
+				return admin(req, res, next)
+			}
+			
 			Pages.model.findOne({ path:req.path }, (err, page) => {
 				if(err) return next(err)
 				if(!page) return next()
