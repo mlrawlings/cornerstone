@@ -9,7 +9,10 @@ module.exports = new EditableType('text', {
 		},
 	}],
 	render: (node, value, options) => {
-		node.innerHTML = value
+		if(value) {
+			node.innerHTML = value
+		}
+
 		return node
 	}
 })

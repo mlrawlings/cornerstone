@@ -25,6 +25,7 @@ module.exports = function transform(el, context) {
 			
 			property.value = builder.literalTrue()
 		})
+		cmsNode.body = el.body
 		el.replaceWith(cmsNode)
 	}
 }

@@ -15,7 +15,10 @@ module.exports = new EditableType('href', {
 		},
 	}],
 	render: (node, value, options) => {
-		node.href = value
+		if(value) {
+			node.href = value
+		}
+
 		return node
 	}
 })
