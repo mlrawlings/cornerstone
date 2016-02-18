@@ -9,6 +9,15 @@
 		"renderer":"./src/tags/find.renderer",
 		"transformer":"./src/tags/find.transformer"
 	},
+	"<head>": {
+		"transformer":"./src/tags/head.transformer"
+	},
+	"<body>": {
+		"transformer":"./src/tags/body.transformer"
+	},
+	"<inject>": {
+		"renderer":"./src/tags/inject.renderer"
+	},
 	"<*>": {
 		"transformer":"./src/tags/editable.transformer"
 	}

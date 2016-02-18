@@ -84,6 +84,13 @@ function getPageMiddleware(cornerstone) {
 			
 			var template = cornerstone.getTemplate(page.template)
 			var $global = { site, page, editing:req.editing, qs:req.query }
+
+			if($global.editing) {
+				$global.inject = {
+					css:[`/${cornerstone.adminPath}/editing.css`],
+					js:[`/${cornerstone.adminPath}/editing.js`]
+				}
+			}
 			
 			template.stream({ $global }).pipe(res)
 		})
