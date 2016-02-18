@@ -12,7 +12,8 @@
   "dependencies": {
     "marko": "git://github.com/marko-js/marko#htmljs-parser",
     "mongoose": "^4.4.2",
-    "require-all": "^2.0.0"
+    "require-all": "^2.0.0",
+    "serve-static": "^1.10.2"
   },
   "devDependencies": {
     "express": "^4.13.4"

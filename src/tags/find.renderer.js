@@ -2,7 +2,7 @@ var cornerstone = require('../..')
 
 module.exports = function(input, out) {
 	var Collection = cornerstone.getCollection(input.collection)
-	var editing = out.global.qs.editing
+	var editing = out.global.editing
 
 	if(!Collection) {
 		return out.error('No collection found with name "'+input.collection+'".')

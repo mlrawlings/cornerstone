@@ -47,23 +47,17 @@ class Cornerstone {
 		mongoose.connect.apply(mongoose, arguments)
 	}
 	express() {
-		var site
 		var adminRegex = new RegExp('^\\/'+this.adminPath+'(\/|$)')
+		var serveStatic = getStaticMiddleware(this)
+		var servePage = getPageMiddleware(this)
 		return (req, res, next) => {
 			if(adminRegex.test(req.path)) {
 				req.url = req.url.replace(adminRegex, '/')
-				return admin(req, res, next)
+				req.editing = true
+				serveStatic(req, res, () => servePage(req, res, next))
+			} else {
+				servePage(req, res, next)
 			}
-			
-			Pages.model.findOne({ path:req.path }, (err, page) => {
-				if(err) return next(err)
-				if(!page) return next()
-				
-				var template = this.getTemplate(page.template)
-				var $global = { site, page, qs:req.query }
-				
-				template.stream({ $global }).pipe(res)
-			})
 		}
 	}
 	_load(dirname, fn) {
@@ -75,3 +69,23 @@ class Cornerstone {
 }
 
 module.exports = Cornerstone
+
+function getStaticMiddleware(cornerstone) {
+	var publicPath = path.join(__dirname, './admin/public')
+	return require('serve-static')(publicPath)
+}
+
+function getPageMiddleware(cornerstone) {
+	var site
+	return (req, res, next) => {
+		Pages.model.findOne({ path:req.path }, (err, page) => {
+			if(err) return next(err)
+			if(!page) return next()
+			
+			var template = cornerstone.getTemplate(page.template)
+			var $global = { site, page, editing:req.editing, qs:req.query }
+			
+			template.stream({ $global }).pipe(res)
+		})
+	}
+}

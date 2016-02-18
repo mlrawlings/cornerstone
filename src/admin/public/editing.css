@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+#cms-menu {
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  background:linear-gradient(to bottom, #fff, #f9f9f9);
+  color:#222;
+  font-weight:400;
+  z-index:2147483647;
+  border-radius:3px;
+  border:1px solid #aaa;
+  pointer-events:none;
+  line-height:1em;
+}
+
+#cms-menu.open {
+  pointer-events:auto;
+  padding-top:3px;
+  padding-bottom:3px;
+}
+
+#cms-menu .cms-menu-item {
+  display:inline-block;
+  padding:5px;
+}
+
+#cms-menu.open .cms-menu-item {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  border-left:1px solid transparent;
+  border-right:1px solid transparent;
+  margin-left:-1px;
+  margin-right:-1px;
+  padding-right:30px;
+}
+
+#cms-menu .cms-menu-item:hover {
+  background-color:#09c;
+  border-color:#09c;
+  color:#fff;
+  cursor:pointer;
+}
+
+#cms-menu .cms-menu-item:hover i {
+  opacity:0.9;
+}
+
+#cms-menu:not(.open) .cms-menu-item:not(:first-child) {
+  opacity:0.25;
+}
+
+#cms-menu .cms-menu-item span {
+  font-size:12px;
+  display:none;
+}
+
+#cms-menu.open .cms-menu-item span {
+  display:inline-block;
+}
+
+#cms-menu .cms-menu-item i {
+  width:20px;
+  height:20px;
+  line-height:20px;
+  font-size:20px;
+  display:inline-block;
+}
+
+#cms-menu.open .cms-menu-item i {
+  margin-right:5px;
+}
+
+
+#cms-highlight {
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  z-index:2147483646;
+  border:2px solid #09c;
+  background-color:rgba(0, 153, 204, 0.25);
+  pointer-events:none;
+}
+
+#cms-highlight.active {
+  opacity:0.6;
+}
+
+#cms-highlight.editing {
+  border:2px dashed #09c;
+  background:transparent;
+}
+
+[data-cms-editable] {
+  cursor:pointer;
+}
+
+[contenteditable] {
+  cursor:text !important;
+  outline:none;
+}
