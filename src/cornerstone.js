@@ -3,7 +3,6 @@
 var path = require('path')
 var all = require('require-all')
 var mongoose = require('mongoose')
-var admin = require('./admin')
 
 var Pages = require('./collections/pages')
 
