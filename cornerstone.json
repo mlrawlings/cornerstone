@@ -1,0 +1,6 @@
+{
+	"editable": {
+		"href": "./src/editable/href",
+		"text": "./src/editable/text"
+	}
+}

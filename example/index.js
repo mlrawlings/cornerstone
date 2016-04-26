@@ -4,6 +4,7 @@ var app = express()
 
 cornerstone.connect('mongodb://localhost/cornerstone-test')
 
+app.use(express.static(__dirname+'/public'))
 app.use(cornerstone.express())
 
 /* Start Temporary Init */

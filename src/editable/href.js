@@ -1,19 +1,23 @@
-var EditableType = require('../editable-type')
+module.exports = {
+	actions: {
+		edit: {
+			label:'Edit link destination',
+			icon:'link',
+			fn:(element, value, options, done) => {
 
-module.exports = new EditableType('href', {
-	actions: [{
-		label:'Edit link destination',
-		icon:'link',
-		fn:(element, value, options, update) => {
-
+			},
 		},
-	},{
-		label:'Visit link',
-		icon:'world',
-		fn:(element, value, options, update) => {
-
-		},
-	}],
+		visit: {
+			label:'Visit link',
+			icon:'launch',
+			fn:(element, value, options, done) => {
+				window.location.href = value
+			},
+		}
+	},
+	parse: (element) => {
+		return element.getAttribute('href')
+	},
 	render: (node, value, options) => {
 		if(value) {
 			node.href = value
@@ -21,4 +25,4 @@ module.exports = new EditableType('href', {
 
 		return node
 	}
-})
+}

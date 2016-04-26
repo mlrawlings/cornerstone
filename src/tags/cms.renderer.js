@@ -1,4 +1,4 @@
-var editableTypes = require('../..')._editableTypes
+var editableTypes = require('../../generated/editable')
 var isOpenTagOnly = require('marko/node_modules/htmljs-parser/html-tags').isOpenTagOnly
 
 module.exports = function(attributes, out) {

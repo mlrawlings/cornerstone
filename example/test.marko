@@ -1,6 +1,186 @@
 <register("test-1" as "Test Template 1") />
 
-<a id="feature-link" editable={ text, href } style="color:#f00;" />
-<find(page in "Pages")>
-	<a href=page.path>${page.name}</a>
-</find>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="description" content="Hollins Squad 5 Website Design">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet" type="text/css" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>JS Bin</title>
+	<link rel="stylesheet" href="/main.css" />
+</head>
+<body>
+	<header class="main">
+		<div class="container">
+			<a class="home" href="/">
+				<img class="logo" alt="Hollins 5 Logo" src="http://mlrawlings.com/experiments/hollins-fire/hollins-company-5.png" />
+				<h1>
+					Volunteer <br />
+					Fire &amp; Rescue
+					<small>Company 5</small>
+				</h1>
+			</a>
+			<nav class="main">
+				<a href="/">Home</a>
+				<a href="/about">About</a>
+				<a href="/news">News</a>
+				<a href="/events">Events</a>
+				<a href="/volunteer">Volunteer</a>
+				<a href="/contact">Contact</a>
+				<a href="/donate" class="button blue">Donate</a>
+			</nav>
+			<a class="menu-link" href="#footer-nav">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+	</header>
+	<section class="hero">
+		<div class="overlay">
+		</div>
+		<div class="container">
+			<h2 _id="hero-text" editable={ text }>
+				Seeking Volunteer<br />Firefighters &amp; EMTs
+			</h2>
+			<a _id="hero-action" editable={ text, href } href="/volunteer" class="button">
+				Become a Volunteer
+			</a>
+		</div>
+	</section>
+	<section class="help">
+		<div class="container">
+			<h2>How you can help</h2>
+			<a class="help-link" href="/donate">
+				<span class="number">01</span>
+				<span class="slash"></span>
+				<span class="text">Make a <br />Donation</span>
+			</a>
+			<a class="help-link" href="/volunteer">
+				<span class="number">02</span>
+				<span class="slash"></span>
+				<span class="text">Become a <br />Volunteer</span>
+			</a>
+			<a class="help-link" href="/events">
+			<span class="number">03</span>
+				<span class="slash"></span>
+				<span class="text">Attend an <br />Event</span>
+			</a>
+		</div>
+	</section>
+	<section class="shop">
+		<div class="container">
+			<h2>Support the Hollins Fire &amp; Rescue <br />Department every time you shop!</h2>
+			<div class="logos">
+				<a href="/donate#amazon">
+					<img style="margin-right:-0.75em;" src="http://www.omrolibrary.org/sites/omrolibrary.org/files/amazon%20smile%20logo%20for%20website%20940x240.jpg" />
+				</a>
+				<span class="plus">+</span>
+				<a href="/donate#kroger">
+					<img src="http://cincinnatizoo.org/wp-content/uploads/2014/02/kroger_community.png" />
+				</a>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container">
+			<div class="column">
+				<h2>Hollins <br />Fire &amp; Rescue</h2>
+				<div class="featured-image" style="background-image:url('https://scontent-iad3-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/168545_182338941789767_94109_n.jpg?oh=ceb2b4caeba9e11537f033c0bf64db82&oe=5749789C');"></div>
+				<p>
+					Founded in 1950, the Hollins Fire &amp; Rescue Department 
+					has served the citizens of the Northern Roanoke County, Virginia.  
+					<a href="/about">Learn more</a>
+				</p>
+			</div>
+			<div class="column">
+				<h2>Serving our <br />Community</h2>
+				<div class="featured-image" style="background-image:url('http://www.hollinsfireandrescue.com/wp-content/gallery/incidents/station56.jpg');"></div>
+				<p>
+				 Hollins also runs mutual aid responses to East Roanoke 
+					County, the City of Roanoke, and the town of Vinton. 
+					<a href="/about">Learn more</a>
+				</p>
+			</div>
+			<div class="column">
+				<h2>Our <br />Apparatus</h2>
+				<div class="featured-image" style="background-image:url('https://scontent-iad3-1.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/539205_474230785933913_182813679_n.jpg?oh=d8291041b9cc30980b7fae6038b093ff&oe=574174A8');"></div>
+				<p>
+					Hollins operates an apparatus fleet comprised of a Wagon, Ladder, Engine, and 3 ambulances.
+					<a href="/about">Learn more</a>
+				</p>
+			</div>
+		</div>
+	</section>
+	<nav id="footer-nav" class="footer">
+		<div class="container">
+			<h2>Select a Menu Option</h2>
+			<a href="/">Home</a>
+			<a href="/about">About</a>
+			<a href="/news">News</a>
+			<a href="/events">Events</a>
+			<a href="/volunteer">Volunteer</a>
+			<a href="/contact">Contact</a>
+			<a href="/donate" class="button blue">Donate</a>
+		</div>
+	</nav>
+	<footer class="main">
+		<div class="container">
+			<div class="column contact">
+				<h3>Hollins Fire &amp; Rescue</h3>
+				<address>
+					<a href="https://maps.google.com?daddr=7401+Barrens+Rd,+Roanoke,+VA+24019">
+						7401 Barrens Rd <br />
+						Roanoke, VA 24019
+					</a>
+				</address>
+				<h4>Mailing Address</h4>
+				<address>
+					P.O. Box 7041<br />
+					Roanoke, VA 24019
+				</address>
+				<h4>Non-Emergency Phone</h4>
+				<a href="tel:+15405618019">540-561-8019</a>
+				<small>In case of <strong class="emergency">emergency</strong>, call 911</small>
+			</div>
+			<div class="column">
+				<h3>Resources</h3>
+				<a class="resource" href="http://www.roanokecountyva.gov/index.asp?nid=75">
+					Roanoke County Fire &amp; Rescue
+				</a>
+				<a class="resource" href="http://www.vafire.com/">
+					Virginia Department of Fire Programs
+				</a>
+				<a class="resource" href="http://www.wvems.org/">
+					Western Virginia EMS Council
+				</a>
+				<a class="resource" href="http://www.vaemergency.gov/">
+					Virginia Department of Emergency Management
+				</a>
+				<find(page in "Pages")>
+					<a class="resource" href=page.path>${page.name}</a>
+				</find>
+			</div>
+			<div class="column">
+				<h3>Volunteer</h3>
+				<p>Come join our department as a volunteer and help give back to your community. We will help provide you with the training. You also can earn up to $500.00 per year for volunteering.</p>
+				<a href="/volunteer" class="button">Be a Volunteer</a>
+			</div>
+			<div class="column">
+				<h3>Donate</h3>
+				<p>Help ensure we can continue to
+provide the emergency services you have come to expect from our organization. Your gift will enable us to continue our tradition of service to those in need.</p>
+				<a href="/donate" class="button blue">Make a Donation</a>
+			</div>
+		</div>
+	</footer>
+	<footer class="copyright">
+		<div class="container">
+			<span>Copyright &copy; 2016 Hollins Volunteer Fire &amp; Rescue</span>
+		</div>
+	</footer>
+	<script src="/menu.js"></script>
+</body>
+</html>

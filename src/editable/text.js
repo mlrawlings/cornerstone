@@ -1,13 +1,16 @@
-var EditableType = require('../editable-type')
+module.exports = {
+	actions: {
+		edit: {
+			label:'Edit text',
+			icon:'edit',
+			fn:(element, value, options, done) => {
 
-module.exports = new EditableType('text', {
-	actions: [{
-		label:'Edit text',
-		icon:'edit',
-		fn:(element, value, options, update) => {
-
-		},
-	}],
+			},
+		}
+	},
+	parse: (element) => {
+		return element.innerHTML
+	},
 	render: (node, value, options) => {
 		if(value) {
 			node.innerHTML = value
@@ -15,4 +18,4 @@ module.exports = new EditableType('text', {
 
 		return node
 	}
-})
+}

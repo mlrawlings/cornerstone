@@ -10,12 +10,11 @@ class Cornerstone {
 	constructor() {
 		this._templates = {}
 		this._collections = {}
-		this._editableTypes = {}
 
 		this.adminPath = 'admin'
+		this.staticPath = 'static'
 
 		this.registerCollection(Pages)
-		this.loadEditableTypes(path.join(__dirname, './editable'))
 	}
 	getTemplate(id) {
 		return this._templates[id]
@@ -36,24 +35,22 @@ class Cornerstone {
 	loadCollections(dirname) {
 		this._load(dirname, this.registerCollection)
 	}
-	registerEditableType(editable) {
-		this._editableTypes[editable.name] = editable
-	}
-	loadEditableTypes(dirname) {
-		this._load(dirname, this.registerEditableType)
-	}
 	connect() {
 		mongoose.connect.apply(mongoose, arguments)
 	}
 	express() {
 		var adminRegex = new RegExp('^\\/'+this.adminPath+'(\/|$)')
+		var staticRegex = new RegExp('^\\/'+this.staticPath+'(\/|$)')
 		var serveStatic = getStaticMiddleware(this)
 		var servePage = getPageMiddleware(this)
 		return (req, res, next) => {
 			if(adminRegex.test(req.path)) {
 				req.url = req.url.replace(adminRegex, '/')
 				req.editing = true
-				serveStatic(req, res, () => servePage(req, res, next))
+				servePage(req, res, next)
+			} else if(staticRegex.test(req.path)) {
+				req.url = req.url.replace(staticRegex, '/')
+				serveStatic(req, res, next)
 			} else {
 				servePage(req, res, next)
 			}
@@ -70,8 +67,8 @@ class Cornerstone {
 module.exports = Cornerstone
 
 function getStaticMiddleware(cornerstone) {
-	var publicPath = path.join(__dirname, './admin/public')
-	return require('serve-static')(publicPath)
+	var staticPath = path.join(__dirname, '../generated/static')
+	return require('serve-static')(staticPath)
 }
 
 function getPageMiddleware(cornerstone) {
@@ -86,8 +83,8 @@ function getPageMiddleware(cornerstone) {
 
 			if($global.editing) {
 				$global.inject = {
-					css:[`/${cornerstone.adminPath}/editing.css`],
-					js:[`/${cornerstone.adminPath}/editing.js`]
+					css:[`/${cornerstone.staticPath}/editing.css`],
+					js:[`/${cornerstone.staticPath}/admin.js`]
 				}
 			}
 			
